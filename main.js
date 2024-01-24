@@ -7,7 +7,7 @@ function InserirFilmesNaTela(filmes) {
     const movieId = movie.id;
     const title = movie.title;
     const releaseYear = movie.release_date.split('-')[0];
-    const posterPath = https://image.tmdb.org/t/p/w500/${movie.poster_path};
+    const posterPath = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
     const rating = movie.vote_average.toFixed(1);
     const overview = movie.overview;
 
@@ -31,7 +31,7 @@ function InserirFilmesNaTela(filmes) {
 
     const titulo = document.createElement('h2');
     titulo.className = 'cards__parte2-titulo';
-    titulo.textContent = ${title} (${releaseYear});
+    titulo.textContent = `${title} (${releaseYear})`;
 
     const details = document.createElement('div');
     details.className = 'cards__parte2-details';
