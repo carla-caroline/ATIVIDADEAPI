@@ -13,7 +13,7 @@ function pesquisarFilmes() {
     const searchTerm = inputPesquisa.value.trim(); // Obtém o valor do campo de pesquisa e remove espaços em branco no início e no final
 
     if (searchTerm !== '') {
-        fetch(https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=pt-BR&query=${searchTerm}&page=1&include_adult=false)
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=pt-BR&query=${searchTerm}&page=18include_adult=false`)
             .then(response => response.json())
             .then(data => {
                 const movies = data.results; // Array de filmes correspondentes aos resultados da pesquisa
@@ -39,7 +39,6 @@ function pesquisarFilmes() {
         console.log('Nenhum termo de pesquisa foi inserido.');
     }
 }
-
 async function getFilmesFavoritos() {
     if (listaDeFavoritos.length === 0) {
         document.getElementById('filmes').innerHTML = '';
@@ -50,7 +49,7 @@ async function getFilmesFavoritos() {
         try {
             const filmes = [];
             for (const movieId of listaDeFavoritos) {
-                const response = await fetch(https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=pt-BR);
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=pt-BR`);
                 const movie = await response.json();
                 filmes.push(movie);
             }
@@ -64,12 +63,12 @@ async function getFilmesFavoritos() {
     } else {
         document.querySelector('.card__lista-vazia').style.display = 'none';
         try {
-            const response = await fetch(https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR);
+            const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR`);
             const data = await response.json();
             const movies = data.results.slice(0, 10);
             InserirFilmesNaTela(movies);
         } catch (error) {
             console.error('Ocorreu um erro ao obter os filmes populares:', error);
-        }
-    }
+        }
+    }
 }
